@@ -2,7 +2,7 @@
 
 set -x
 
-# Implied packages (see README):
+# Implied packages (see README setup):
 #   * stow
 #   * wget
 #   * git
