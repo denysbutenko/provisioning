@@ -12,10 +12,6 @@ sudo apt install -y \
     gnupg2 \
     htop \
     ncdu \
-    python3 \
-    python3-pip \
-    rsync \
-    silversearcher-ag \
     tmux \
     tree \
     util-linux \
@@ -24,14 +20,14 @@ sudo apt install -y \
 
 sudo apt -y autoremove
 
-sudo apt install ufw
+sudo apt install -y ufw
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw logging on
 sudo ufw enable
 
-sudo apt install fail2ban
+sudo apt install -y fail2ban
 
 # TODO automatic sed script to harden sshd config
 
