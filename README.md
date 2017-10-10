@@ -1,6 +1,11 @@
 # provisioning
 Various server and SBC provisioning scripts and setup notes.
 
+## Prerequisites
+
+TODO generate ssh key on host machine
+
+
 ## Generic Debian (Stretch) Server
 
 TODO
@@ -11,7 +16,7 @@ TODO
 Blog post with write-up [here](TODO). Content is essentially the stuff below.
 
 
-### Setup (base)
+### Base Setup
 
 * Extract the [image](https://www.armbian.com/orange-pi-zero/), verify the checksum, burn onto a micro SD card
 * Connect the board to ethernet
@@ -42,7 +47,7 @@ bash "${TMP}/opz.sh"
 Logout. Then on the host machine, `ssh-copy-id username@ip`, then ssh back in.
 
 
-### Setup ([W]LAN networking)
+### Setup WLAN Networking
 
 Setting up WiFi is easy with the `nmtui` front-end to NetworkManager that comes with armbian: `sudo nmtui-connect`
 
@@ -74,6 +79,6 @@ Then restart the ssh daemon. Armbian uses `systemd`, so `sudo systemctl restart 
 The last is the easiest. `sudo apt install fail2ban` comes with a default configuration for ssh intrusion prevention and the service is started automatically. Install and forget, but [additional configuration](https://www.linode.com/docs/security/using-fail2ban-for-security) may be of interest to more advanced users.
 
 
-### Setup (real internet exposure)
+### Setup Real Internet Exposure
 
 **TODO router port forwarding, static ip and dynamic DNS, sample web server deployment, maybe two-factor SSH**
