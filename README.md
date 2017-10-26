@@ -3,12 +3,16 @@ Various server and SBC provisioning scripts and setup notes.
 
 ## Prerequisites
 
-TODO generate ssh key on host machine
+In order to authenticate yourself over `ssh` to servers, you'll need to first establish your identity by generating a public and private keypair:
+
+`ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+
+The rest of the process is interactive. It is up to you whether or not to use one default private key `~/.ssh/id_rsa` for everything, or generate separate keys for separate things.
 
 
-## [Orange Pi Zero](https://www.aliexpress.com/store/product/New-Orange-Pi-Zero-H2-Quad-Core-Open-source-512MB-development-board-beyond-Raspberry-Pi/1553371_32761500374.html) (opz.sh)
+## [Orange Pi Zero](http://www.orangepi.org/orangepizero) (opz.sh)
 
-Blog post with detailed write-up is [here](TODO). It essentially includes the below and explains what `opz.sh` is doing.
+Blog post with detailed write-up is [here](TODO). It essentially includes the below (excluding personal dotfile setup) and explains what `opz.sh` is doing.
 
 
 ### Base Setup
