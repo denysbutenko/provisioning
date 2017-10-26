@@ -12,7 +12,7 @@ The rest of the process is interactive. It is up to you whether or not to use on
 
 ## [Orange Pi Zero](http://www.orangepi.org/orangepizero) (opz.sh)
 
-Blog post with detailed write-up is [here](TODO). It essentially includes the below (excluding personal dotfile setup) and explains what `opz.sh` is doing.
+Blog post with detailed write-up is [here](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/). It essentially includes the below (excluding personal dotfile setup) and explains what `opz.sh` is doing.
 
 
 ### Base Setup
@@ -43,21 +43,21 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/opz.sh -P "
 bash "${TMP}/opz.sh"
 ```
 
-`opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](TODO) for details, or review the script's source. To summarize:
+`opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/) for details, or review the script's source. To summarize:
 
 * Installs a minimal amount of essential software, including `ufw` and `fail2ban`
 * Configures and enables `ufw` to only allow incoming `ssh` on port 22
 * Hardens `/etc/ssh/sshd_config`
 * Interactively sets hostname, changes login shell to `zsh`
 
-Once done, logout. Then on your machine, `ssh-copy-id username@ip` to copy your pubkey to the orange pi zero. You are now all set for administration over key-based `ssh` on your WLAN.
+Once done, logout. Then `ssh-copy-id username@ip` and done!
 
 
 ### Setup WLAN Networking
 
-Setting up WiFi on the orange pi zero is easy with the `nmtui` front-end to NetworkManager that comes with armbian: `sudo nmtui-connect`
+Setting up WiFi on the OPZ is easy with the `nmtui` front-end to NetworkManager that comes with armbian:
 
-Once you have a successful access point configuration, you are free to disconnect ethernet from the board and reboot.
+`sudo nmtui-connect`
 
 
 ## Generic Debian (Stretch) Server
