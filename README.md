@@ -28,9 +28,9 @@ Optionally, begin by installing my universal server dotfiles:
 
 ```bash
 sudo apt install -y git stow
-git clone --recursive https://github.com/JoshuaRLi/universal ~/universal
 rm -f ~/.bashrc  # this is so stow doesn't choke
-cd ~/universal && stow --ignore='(server-provisioning|.gitmodules)' -v .
+git clone --recursive https://github.com/JoshuaRLi/universal "${HOME}/universal"
+cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules)' -v .
 cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
 ```
 
