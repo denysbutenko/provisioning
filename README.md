@@ -1,6 +1,8 @@
 # provisioning
 Various server and SBC provisioning scripts and setup notes.
 
+Snippets for common tasks are in `generic/`.
+
 ## Prerequisites
 
 In order to authenticate yourself over `ssh` to servers, you'll need to first establish your identity by generating a public and private keypair:
