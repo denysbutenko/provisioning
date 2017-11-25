@@ -24,4 +24,5 @@ PasswordAuthentication yes
 AuthenticationMethods publickey,password
 EOF"
 
-sudo service restart ssh
+sudo service restart ssh    # if using systemV
+sudo systemctl restart ssh  # if using systemd
