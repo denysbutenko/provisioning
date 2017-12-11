@@ -7,39 +7,16 @@ read username
 adduser "$username"
 usermod -aG sudo "$username"
 
-apt install -y ufw fail2ban zsh
-
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow ssh
-ufw logging on
-ufw enable
-
-cat > /etc/ssh/sshd_config <<EOF
-AllowUsers $(whoami)
-ServerKeyBits 1024
-LoginGraceTime 120
-KeyRegenerationInterval 3600
-IgnoreRhosts yes
-IgnoreUserKnownHosts yes
-StrictModes yes
-PrintMotd yes
-SyslogFacility AUTH
-LogLevel INFO
-PermitRootLogin no
-PermitEmptyPasswords no
-RhostsAuthentication no
-RhostsRSAAuthentication no
-X11Forwarding no
-RSAAuthentication yes
-PasswordAuthentication yes
-AuthenticationMethods publickey,password
-EOF
-
-systemctl restart ssh
-
 printf '%s\n' 'Enter new hostname:'
 read hn
 hostnamectl set-hostname "$hn"
 
+apt install -y ufw ssh fail2ban zsh
 chsh -s "$(which zsh)" "$username"
+
+TMP="$(mktemp -d)"
+GURL="https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/generic"
+wget "${GURL}/ufw-basecfg.sh" -P "$TMP"
+bash "${TMP}/ufw-basecfg.sh"
+wget "${GURL}/harden-ssh.sh" -P "$TMP"
+bash "${TMP}/harden-ssh.sh"
