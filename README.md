@@ -47,8 +47,6 @@ Move on to Base Setup.
 
 Armbian has a convenient root login script that interactively sets up a sudo-enabled user. Once complete, you **must reboot** because orange pi needs to resize its filesystem. Then, **login as your user** and `sudo apt update && sudo apt upgrade`.
 
-Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
-
 Install core software and configuration using the provisioning script:
 
 ```bash
@@ -58,14 +56,9 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/opz.sh -P "
 bash "${TMP}/opz.sh"
 ```
 
-`opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/) for details, or review the script's source. To summarize:
+`opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/) for details, or review the script's source.
 
-* Installs a minimal amount of essential software, including `ufw` and `fail2ban`
-* Configures and enables `ufw` to only allow incoming `ssh` on port 22
-* Hardens `/etc/ssh/sshd_config`
-* Interactively sets hostname, changes login shell to `zsh`
-
-Once done, logout. Then `ssh-copy-id username@ip` and done!
+Once done, logout. Then `ssh-copy-id username@ip` and done! Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 ### Setup WLAN Networking
