@@ -12,29 +12,19 @@ In order to authenticate yourself over `ssh` to servers, you'll need to first es
 The rest of the process is interactive. It is up to you whether or not to use one default private key `~/.ssh/id_rsa` for everything, or generate separate keys for separate things.
 
 
-## Raspbian on [Raspberry Pi Zero (W)ireless](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) (rpizw-sou.sh (optional) and rpizw.sh)
+## Debian Stretch 9.2 VPS - DigitalOcean (deb92-do.sh)
 
-Blog post with detailed write-up is [here](https://tildeslash.io/TODO).
+On first login as the root user:
 
-### Initial SSH Session
+```bash
+apt update && apt upgrade -y
+TMP="$(mktemp -d)"
+wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/deb92-do.sh -P "$TMP"
+bash "${TMP}/deb92-do.sh"
+```
 
-* Extract the [Raspbian lite image](), verify the checksum, burn onto a micro SD card
+Once done, logout. Then `ssh-copy-id username@ip` and ssh back in as your user. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](##Snippets).
 
-3 paths to achieve initial ssh session:
-1. connect directly to ethernet by using a usb data cable to ethernet adapter (TODO need to test this on vanilla image), then find ip over router
-2. run my ssh over usb script to modify the image
-connect usb cable to USB (data), not pwr, make sure usb cable has data lines (usually the wire is just thicker) and not just power over usb.
-
-`ssh pi@raspberrypi.local` pw is raspberry
-
-3. TODO setup wifi by directly editing wpa_supplicant.conf and etc netwrok interfaces, then find ip with router
-
-
-### Base Setup
-
-Optionally, begin by installing my universal server dotfiles. Refer to the Snippets section at the bottom of this README.
-
-TODO rewrite personal notes here
 
 
 ## Armbian on [Orange Pi Zero](http://www.orangepi.org/orangepizero) (opz.sh)
@@ -56,7 +46,7 @@ Move on to Base Setup.
 
 Armbian has a convenient root login script that interactively sets up a sudo-enabled user. Once complete, you **must reboot** because orange pi needs to resize its filesystem. Then, **login as your user** and `sudo apt update && sudo apt upgrade`.
 
-Optionally, begin by installing my universal server dotfiles. Refer to the Snippets section at the bottom of this README.
+Optionally, begin by installing my [server dotfiles][1]. Refer to the Snippets section at the bottom of this README.
 
 Install core software and configuration using the provisioning script:
 
@@ -84,14 +74,34 @@ Setting up WiFi on the OPZ is easy with the `nmtui` front-end to NetworkManager 
 `sudo nmtui-connect`
 
 
-## Generic Debian (Stretch) Server
+## Raspbian on [Raspberry Pi Zero (W)ireless](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) (rpizw-sou.sh (optional) and rpizw.sh)
 
-TODO
+Blog post with detailed write-up is [here](https://tildeslash.io/TODO).
+
+### Initial SSH Session
+
+* Extract the [Raspbian lite image](), verify the checksum, burn onto a micro SD card
+
+3 paths to achieve initial ssh session:
+1. connect directly to ethernet by using a usb data cable to ethernet adapter (TODO need to test this on vanilla image), then find ip over router
+2. run my ssh over usb script to modify the image
+connect usb cable to USB (data), not pwr, make sure usb cable has data lines (usually the wire is just thicker) and not just power over usb.
+
+`ssh pi@raspberrypi.local` pw is raspberry
+
+3. TODO setup wifi by directly editing wpa_supplicant.conf and etc netwrok interfaces, then find ip with router
+
+
+### Base Setup
+
+Optionally, begin by installing my [server dotfiles][1]. Refer to the Snippets section at the bottom of this README.
+
+TODO rewrite personal notes here
 
 
 ## Snippets
 
-Personal "universal" dotfiles installation:
+Personal "universal" [server dotfiles][1] installation:
 
 ```bash
 sudo apt install -y git stow
@@ -100,3 +110,5 @@ git clone --recursive https://github.com/JoshuaRLi/universal "${HOME}/universal"
 cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules)' -v .
 cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
 ```
+
+[1]: https://github.com/JoshuaRLi/universal
