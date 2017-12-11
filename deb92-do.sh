@@ -7,10 +7,6 @@ read username
 adduser "$username"
 usermod -aG sudo "$username"
 
-printf '%s\n' 'Enter new hostname:'
-read hn
-hostnamectl set-hostname "$hn"
-
 apt install -y ufw ssh fail2ban zsh
 chsh -s "$(which zsh)" "$username"
 
@@ -20,3 +16,7 @@ wget "${GURL}/ufw-basecfg.sh" -P "$TMP"
 bash "${TMP}/ufw-basecfg.sh"
 wget "${GURL}/harden-ssh.sh" -P "$TMP"
 bash "${TMP}/harden-ssh.sh"
+
+printf '%s\n' 'Enter new hostname:'
+read hn
+hostnamectl set-hostname "$hn"

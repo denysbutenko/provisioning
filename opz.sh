@@ -17,10 +17,6 @@ sudo apt install -y \
     util-linux \
     vim
 
-printf '%s\n' 'Enter new hostname:'
-read hn
-sudo hostnamectl set-hostname "$hn"
-
 sudo apt install -y ufw ssh fail2ban zsh
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
@@ -30,5 +26,9 @@ wget "${GURL}/ufw-basecfg.sh" -P "$TMP"
 bash "${TMP}/ufw-basecfg.sh"
 wget "${GURL}/harden-ssh.sh" -P "$TMP"
 bash "${TMP}/harden-ssh.sh"
+
+printf '%s\n' 'Enter new hostname:'
+read hn
+hostnamectl set-hostname "$hn"
 
 exec zsh
