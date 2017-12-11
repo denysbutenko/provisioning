@@ -111,7 +111,7 @@ cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
 
 Harden `sshd` configuration:
 
-```
+```bash
 TMP="$(mktemp -d)"
 GURL="https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/generic"
 wget "${GURL}/harden-ssh.sh" -P "$TMP"
