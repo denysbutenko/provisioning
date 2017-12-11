@@ -1,7 +1,8 @@
 # provisioning
 Various server and SBC provisioning scripts and setup notes.
 
-Snippets for common tasks are in `generic/`.
+Snippets for common tasks that are downloaded and executed by the top level scripts reside in `generic/`.
+
 
 ## Prerequisites
 
@@ -12,7 +13,7 @@ In order to authenticate yourself over `ssh` to servers, you'll need to first es
 The rest of the process is interactive. It is up to you whether or not to use one default private key `~/.ssh/id_rsa` for everything, or generate separate keys for separate things.
 
 
-## Debian Stretch 9.2 VPS - DigitalOcean (deb92-do.sh)
+## Debian Stretch 9.2 VPS - [DigitalOcean](https://www.digitalocean.com) (deb92-do.sh)
 
 On first login as the root user:
 
@@ -23,7 +24,7 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/deb92-do.sh
 bash "${TMP}/deb92-do.sh"
 ```
 
-Once done, logout. Then `ssh-copy-id username@ip` and ssh back in as your user. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](##Snippets).
+Once done, logout. Then `ssh-copy-id username@ip` and ssh back in as your user. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 
@@ -46,7 +47,7 @@ Move on to Base Setup.
 
 Armbian has a convenient root login script that interactively sets up a sudo-enabled user. Once complete, you **must reboot** because orange pi needs to resize its filesystem. Then, **login as your user** and `sudo apt update && sudo apt upgrade`.
 
-Optionally, begin by installing my [server dotfiles][1]. Refer to the Snippets section at the bottom of this README.
+Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 Install core software and configuration using the provisioning script:
 
@@ -94,7 +95,7 @@ connect usb cable to USB (data), not pwr, make sure usb cable has data lines (us
 
 ### Base Setup
 
-Optionally, begin by installing my [server dotfiles][1]. Refer to the Snippets section at the bottom of this README.
+Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 TODO rewrite personal notes here
 
