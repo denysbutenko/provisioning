@@ -105,7 +105,7 @@ Personal "universal" [server dotfiles][1] installation:
 sudo apt install -y git stow
 rm -f ~/.bashrc  # this is so stow doesn't choke
 git clone --recursive https://github.com/JoshuaRLi/universal "${HOME}/universal"
-cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules)' -v .
+cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules|VERSION)' -v .
 cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
 ```
 
