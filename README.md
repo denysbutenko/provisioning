@@ -24,7 +24,9 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/deb92-do.sh
 bash "${TMP}/deb92-do.sh"
 ```
 
-Once done, logout. Then `ssh-copy-id username@ip` and ssh back in as your user. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
+Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**.
+
+Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 
@@ -58,7 +60,9 @@ bash "${TMP}/opz.sh"
 
 `opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/) for details, or review the script's source.
 
-Once done, logout. Then `ssh-copy-id username@ip` and done! Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
+Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**.
+
+Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 ### Setup WLAN Networking
@@ -103,6 +107,15 @@ rm -f ~/.bashrc  # this is so stow doesn't choke
 git clone --recursive https://github.com/JoshuaRLi/universal "${HOME}/universal"
 cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules)' -v .
 cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
+```
+
+Harden `sshd` configuration:
+
+```
+TMP="$(mktemp -d)"
+GURL="https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/generic"
+wget "${GURL}/harden-ssh.sh" -P "$TMP"
+bash "${TMP}/harden-ssh.sh"
 ```
 
 [1]: https://github.com/JoshuaRLi/universal

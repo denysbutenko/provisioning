@@ -14,8 +14,6 @@ TMP="$(mktemp -d)"
 GURL="https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/generic"
 wget "${GURL}/ufw-basecfg.sh" -P "$TMP"
 bash "${TMP}/ufw-basecfg.sh"
-wget "${GURL}/harden-ssh.sh" -P "$TMP"
-bash "${TMP}/harden-ssh.sh"
 
 printf '%s\n' 'Enter new hostname:'
 read hn
