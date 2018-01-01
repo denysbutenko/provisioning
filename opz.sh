@@ -2,20 +2,12 @@
 
 set -x
 
-# Implied packages (see README setup):
-#   * stow
-#   * wget
-#   * git
-
 sudo apt install -y \
-    curl \
-    gnupg2 \
     htop \
+    nano \
     ncdu \
-    tmux \
     tree \
-    util-linux \
-    vim
+    wget
 
 sudo apt install -y ufw ssh fail2ban zsh
 sudo chsh -s "$(which zsh)" "$(whoami)"
