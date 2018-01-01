@@ -72,31 +72,6 @@ Setting up WiFi on the OPZ is easy with the `nmtui` front-end to NetworkManager 
 `sudo nmtui-connect`
 
 
-## Raspbian on [Raspberry Pi Zero (W)ireless](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) (rpizw-sou.sh (optional) and rpizw.sh)
-
-Blog post with detailed write-up is [here](https://tildeslash.io/TODO).
-
-### Initial SSH Session
-
-* Extract the [Raspbian lite image](), verify the checksum, burn onto a micro SD card
-
-3 paths to achieve initial ssh session:
-1. connect directly to ethernet by using a usb data cable to ethernet adapter (TODO need to test this on vanilla image), then find ip over router
-2. run my ssh over usb script to modify the image
-connect usb cable to USB (data), not pwr, make sure usb cable has data lines (usually the wire is just thicker) and not just power over usb.
-
-`ssh pi@raspberrypi.local` pw is raspberry
-
-3. TODO setup wifi by directly editing wpa_supplicant.conf and etc netwrok interfaces, then find ip with router
-
-
-### Base Setup
-
-Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
-
-TODO rewrite personal notes here
-
-
 ## Snippets
 
 Personal "universal" [server dotfiles][1] installation:
