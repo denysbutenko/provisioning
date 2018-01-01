@@ -24,30 +24,22 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/deb92-do.sh
 bash "${TMP}/deb92-do.sh"
 ```
 
-Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**.
-
-Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
-
+Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 ## Armbian on [Orange Pi Zero](http://www.orangepi.org/orangepizero) (opz.sh)
 
-Blog post with detailed write-up is [here](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/).
-
-
 ### Initial SSH Session
 
-* Extract the [Armbian image](https://www.armbian.com/orange-pi-zero/), verify the checksum, burn onto a micro SD card
-* Connect the board to ethernet
-* Connect the board to power via micro USB (ideally 5V at 2A - most phone chargers should suffice, 1A is an acceptable lower bound)
-* Find the DHCP-assigned IP (many methods like `nmap`, but easiest is to use router's web interface), then login as `root:1234` over `ssh`.
-
-Move on to Base Setup.
+* Extract the [Armbian image](https://www.armbian.com/orange-pi-zero/), verify that checksums match, then burn onto a micro SD card
+* Connect the board to ethernet, then power (ideally 5V at 2A) via micro USB
+* Find the DHCP-assigned IP (easiest way is to use your router's admin interface, or `nmap`), then login as `root:1234` over `ssh`.
+* Optionally, reserve a static IP for the board and add a corresponding host entry to your `~/.ssh/config`
 
 
 ### Base Setup
 
-Armbian has a convenient root login script that interactively sets up a sudo-enabled user. Once complete, you **must reboot** because orange pi needs to resize its filesystem. Then, **login as your user** and `sudo apt update && sudo apt upgrade`.
+Armbian has a convenient root login script that interactively sets up a sudo-enabled user. Once complete, you **must reboot** because orange pi needs to resize its filesystem. Then, **login as your user** and `sudo apt update && sudo apt upgrade -y`.
 
 Install core software and configuration using the provisioning script:
 
@@ -58,33 +50,25 @@ wget https://raw.githubusercontent.com/JoshuaRLi/provisioning/master/opz.sh -P "
 bash "${TMP}/opz.sh"
 ```
 
-`opz.sh` does quite a bit of stuff behind the scenes. Again, refer to my [blog post](https://tildeslash.io/2017/10/26/Setup-Orange-Pi-Zero-running-Armbian-on-WLAN/) for details, or review the script's source.
-
-Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**.
-
-Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
+Once done, logout. Then `ssh-copy-id username@ip`, login as your user, and **run the [Snippet](#snippets) to harden ssh configuration**. Optionally, install my [server dotfiles][1] with the appropriate [Snippet](#snippets).
 
 
 ### Setup WLAN Networking
 
-Setting up WiFi on the OPZ is easy with the `nmtui` front-end to NetworkManager that comes with armbian:
-
-`sudo nmtui-connect`
+Setting up WiFi on the OPZ is easy with the `nmtui` front-end to NetworkManager that comes with armbian: `sudo nmtui-connect`
 
 
 ## Snippets
 
-Personal "universal" [server dotfiles][1] installation:
+Install my [server dotfiles][1] (you'll need `git` and `stow` installed):
 
 ```bash
-sudo apt install -y git stow
-rm -f ~/.bashrc  # this is so stow doesn't choke
-git clone --recursive https://github.com/JoshuaRLi/universal "${HOME}/universal"
-cd "${HOME}/universal" && stow --ignore='(bin|.gitmodules|VERSION)' -v .
-cp "${HOME}/.tmux/.tmux.conf.local" "$HOME"
+rm -f ~/.bashrc  # you may need to remove more files that stow conflicts with
+git clone --recursive https://github.com/JoshuaRLi/dotfiles "${HOME}/dotfiles"
+cd "${HOME}/dotfiles" && bash link.sh base
 ```
 
-Harden `sshd` configuration:
+Harden `sshd` configuration (you'll need `wget` installed):
 
 ```bash
 TMP="$(mktemp -d)"
@@ -93,4 +77,4 @@ wget "${GURL}/harden-ssh.sh" -P "$TMP"
 bash "${TMP}/harden-ssh.sh"
 ```
 
-[1]: https://github.com/JoshuaRLi/universal
+[1]: https://github.com/JoshuaRLi/dotfiles
